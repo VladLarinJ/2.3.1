@@ -6,19 +6,19 @@
     <title>Update User</title>
 </head>
 <body>
-<form th:method="PATCH" th:action="@{/users/update}" th:object="${user}">
+<form th:method="PATCH" th:action="@{/users/{id}(id=${user.getId()})}" th:object="${user}">
     <label for="name">Name</label>
-    <input name="name" th:field="*{name}" id="name"/>
+    <input type="text" th:field="*{name}" id="name"/>
 
     <br>
 
     <label for="lastname">Lastname</label>
-    <input name="lastname" th:field="*{lastName}" id="lastname"/>
+    <input type="text" th:field="*{lastName}" id="lastname"/>
 
     <br>
 
     <label for="mail">Email</label>
-    <input name="mail" th:field="*{mail}" id="mail"/>
+    <input type="text" th:field="*{mail}" id="mail"/>
 
     <br>
 

@@ -2,10 +2,7 @@ package web.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,11 +22,8 @@ public class User {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "name")
     private String name;
-    @Column(name = "lastname")
     private String lastName;
-    @Column(name = "mail")
     private String mail;
 
     public User(String name, String lastName, String mail) {

@@ -19,10 +19,11 @@
         <td th:text="${user.getName()}"/>
         <td th:text="${user.getLastName()}"/>
         <td th:text="${user.getMail()}"/>
-        <td><a th:href="@{users/delete/{id}(id=${user.getId()})}">Delete</a></td>
-        <td><a th:href="@{users/update/{id}(id=${user.getId()})}">Update</a></td>
+        <td><a th:href="@{users/{id}(id=${user.getId()})}">Profile</a></td>
     </tbody>
 </table>
+
+<br/>
 
 <a href="/users/new"> Add User</a>
 

@@ -6,20 +6,25 @@ import org.springframework.web.bind.annotation.*;
 import web.model.User;
 import web.service.UserService;
 
+import javax.persistence.criteria.CriteriaBuilder;
+
 @Controller
 @RequestMapping("/users")
 public class UsersController {
 
     private final UserService userService;
 
-    public UsersController(UserService userService) {
-        this.userService = userService;
-    }
+    public UsersController(UserService userService) { this.userService = userService; }
 
     @GetMapping()
     public String getUsersList(Model model) {
         model.addAttribute("users", userService.listUsers());
         return "/userList";
+    }
+    @GetMapping("/{id}")
+    public String showUser(@PathVariable("id") Integer id, Model model) {
+        model.addAttribute("user", userService.getUserById(id));
+        return "/showUser";
     }
 
     @GetMapping("/new")
@@ -33,19 +38,19 @@ public class UsersController {
         return "redirect:/users";
     }
 
-    @GetMapping("/update/{id}")
+    @GetMapping("/{id}/update")
     public String editUser(Model model, @PathVariable("id") Integer id) {
         model.addAttribute("user", userService.getUserById(id));
         return "/updateUser";
     }
 
-    @PostMapping("/update")
+    @PatchMapping("/{id}")
     public String updateUser(@ModelAttribute("user") User user) {
         userService.updateUser(user);
         return "redirect:/users";
     }
 
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public String deleteUser(@PathVariable("id") Integer id) {
         userService.deleteUser(id);
         return "redirect:/users";
